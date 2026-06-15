@@ -1,3 +1,4 @@
+import { Controller } from 'react-hook-form'
 // images
 import BmiChart from '@assets/images/bmi-chart.png'
 // icons
@@ -11,7 +12,6 @@ import { useText } from '@hooks'
 // locals
 import { useClasses } from './useClasses'
 import { Units, useData } from './useData'
-import { Controller } from 'react-hook-form'
 
 type HomePageProps = {}
 
@@ -24,9 +24,9 @@ export const HomePage: React.FC<HomePageProps> = () => {
     return (
       <span
         className={className.unit({
-          selected: data.unitSelected[key] === unit,
+          selected: data.watch(key) === unit,
         })}
-        onClick={() => data.handleUnitSelected(key, unit)}
+        onClick={() => data.setFormValue(key, unit)}
       >
         {text}
       </span>
@@ -66,8 +66,8 @@ export const HomePage: React.FC<HomePageProps> = () => {
                 color='primary'
                 endIcon={
                   <div className={className.units()}>
-                    {renderUnits('weight', WeightEnum.KG, TX('HOME.KG'))}
-                    {renderUnits('weight', WeightEnum.LG, TX('HOME.LB'))}
+                    {renderUnits('weightUnit', WeightEnum.KG, TX('HOME.KG'))}
+                    {renderUnits('weightUnit', WeightEnum.LG, TX('HOME.LB'))}
                   </div>
                 }
                 isError={!!data.errors.weight?.message}
@@ -88,8 +88,8 @@ export const HomePage: React.FC<HomePageProps> = () => {
                 color='primary'
                 endIcon={
                   <div className={className.units()}>
-                    {renderUnits('height', HeightEnum.CM, TX('HOME.CM'))}
-                    {renderUnits('height', HeightEnum.FT, TX('HOME.FT'))}
+                    {renderUnits('heightUnit', HeightEnum.CM, TX('HOME.CM'))}
+                    {renderUnits('heightUnit', HeightEnum.FT, TX('HOME.FT'))}
                   </div>
                 }
                 isError={!!data.errors.height?.message}
