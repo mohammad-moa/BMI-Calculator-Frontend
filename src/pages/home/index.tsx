@@ -11,6 +11,7 @@ import { useText } from '@hooks'
 // locals
 import { useClasses } from './useClasses'
 import { Units, useData } from './useData'
+import { Controller } from 'react-hook-form'
 
 type HomePageProps = {}
 
@@ -34,8 +35,23 @@ export const HomePage: React.FC<HomePageProps> = () => {
 
   const renderForm = () => {
     return (
-      <form className={className.form()}>
-        <TextField fullWidth isRequired type='number' label={TX('HOME.AGE')} color='primary' />
+      <form className={className.form()} onSubmit={data.handleSubmit(data.handleSubmitFinish)}>
+        <Controller
+          control={data.control}
+          name='age'
+          render={({ field }) => (
+            <TextField
+              {...field}
+              fullWidth
+              isRequired
+              type='number'
+              label={TX('HOME.AGE')}
+              color='primary'
+              isError={!!data.errors.age?.message}
+              helperText={data.errors.age?.message}
+            />
+          )}
+        />
         <TextField
           fullWidth
           isRequired

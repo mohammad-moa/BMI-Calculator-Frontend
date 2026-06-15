@@ -1,4 +1,8 @@
 import { useCallback, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+// schemas
+import { calculateBmiFormSchema, CalculateBmiFormValues } from '@schemas'
 // enums
 import { HeightEnum, WeightEnum } from '@enums'
 
@@ -13,6 +17,18 @@ export const useData = () => {
     height: HeightEnum.CM,
   })
 
+  const {
+    handleSubmit,
+    control,
+    watch,
+    formState: { errors },
+  } = useForm<CalculateBmiFormValues>({
+    mode: 'onSubmit',
+    resolver: zodResolver(calculateBmiFormSchema),
+  })
+
+  /* -------------------------------- Handlers -------------------------------- */
+
   const handleUnitSelected = useCallback(<K extends keyof Units>(key: K, value: Units[K]) => {
     setUnitSelected((prev) => ({
       ...prev,
@@ -20,5 +36,9 @@ export const useData = () => {
     }))
   }, [])
 
-  return { unitSelected, handleUnitSelected }
+  const handleSubmitFinish = () => {}
+
+  console.log(watch(), errors)
+
+  return { unitSelected, handleUnitSelected, handleSubmit, control, errors, handleSubmitFinish }
 }
