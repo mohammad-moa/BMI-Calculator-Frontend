@@ -4,6 +4,8 @@ import BmiChart from '@assets/images/bmi-chart.png'
 import { Flame } from '@icons'
 // components
 import { Button, TextField } from '@components'
+// enums
+import { HeightEnum, WeightEnum } from '@enums'
 // hooks
 import { useText } from '@hooks'
 // locals
@@ -33,28 +35,30 @@ export const HomePage: React.FC<HomePageProps> = () => {
   const renderForm = () => {
     return (
       <form className={className.form()}>
-        <TextField fullWidth type='number' label={TX('HOME.AGE')} color='primary' />
+        <TextField fullWidth isRequired type='number' label={TX('HOME.AGE')} color='primary' />
         <TextField
           fullWidth
+          isRequired
           type='number'
           label={TX('HOME.WEIGHT')}
           color='primary'
           endIcon={
             <div className={className.units()}>
-              {renderUnits('weight', 'kg', TX('HOME.KG'))}
-              {renderUnits('weight', 'lb', TX('HOME.LB'))}
+              {renderUnits('weight', WeightEnum.KG, TX('HOME.KG'))}
+              {renderUnits('weight', WeightEnum.LG, TX('HOME.LB'))}
             </div>
           }
         />
         <TextField
           fullWidth
+          isRequired
           type='number'
           label={TX('HOME.HEIGHT')}
           color='primary'
           endIcon={
             <div className={className.units()}>
-              {renderUnits('height', 'cm', TX('HOME.CM'))}
-              {renderUnits('height', 'ft', TX('HOME.FT'))}
+              {renderUnits('height', HeightEnum.CM, TX('HOME.CM'))}
+              {renderUnits('height', HeightEnum.FT, TX('HOME.FT'))}
             </div>
           }
         />

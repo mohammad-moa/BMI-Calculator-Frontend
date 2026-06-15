@@ -31,6 +31,8 @@
       "@pages/*": ["./src/pages/*"],
       "@constants/*": ["./src/constants/*"],
       "@routers": ["./src/routers/index.tsx"],
+      "@enums": ["./src/enums/index.ts"],
+      "@enums/*": ["./src/enums/*"],
       "@assets/*": ["./src/assets/*"],
       "@utils/*": ["./src/utils/*"],
       "@icons": ["./src/icons/index.ts"],

@@ -1,18 +1,16 @@
 import { useCallback, useState } from 'react'
-
-// Todo: Update With Enum
-export type Weight = 'kg' | 'lb'
-export type Height = 'cm' | 'ft'
+// enums
+import { HeightEnum, WeightEnum } from '@enums'
 
 export type Units = {
-  weight: Weight
-  height: Height
+  weight: WeightEnum
+  height: HeightEnum
 }
 
 export const useData = () => {
   const [unitSelected, setUnitSelected] = useState<Units>({
-    weight: 'kg',
-    height: 'cm',
+    weight: WeightEnum.KG,
+    height: HeightEnum.CM,
   })
 
   const handleUnitSelected = useCallback(<K extends keyof Units>(key: K, value: Units[K]) => {
