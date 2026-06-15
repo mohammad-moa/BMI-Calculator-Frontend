@@ -94,7 +94,7 @@ export const HomePage: React.FC<HomePageProps> = () => {
                 endIcon={
                   <div className={className.units()}>
                     {renderUnits('weightUnit', WeightEnum.KG, TX('HOME.KG'))}
-                    {renderUnits('weightUnit', WeightEnum.LG, TX('HOME.LB'))}
+                    {renderUnits('weightUnit', WeightEnum.LB, TX('HOME.LB'))}
                   </div>
                 }
                 isError={!!data.errors.weight?.message}

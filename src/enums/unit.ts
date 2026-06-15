@@ -1,6 +1,6 @@
 export enum WeightEnum {
   KG = 'kg',
-  LG = 'lb',
+  LB = 'lb',
 }
 
 export enum HeightEnum {
