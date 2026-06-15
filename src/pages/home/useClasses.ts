@@ -11,7 +11,7 @@ export const useClasses = () => {
     formContainer: cva('flex flex-col gap-15 w-1/3'),
     form: cva('flex flex-col gap-7'),
     cards: cva('flex items-center justify-between gap-3 bg-blue-100 p-1.5 rounded-2xl mt-1 w-max'),
-    card: cva('cursor-pointer flex items-center gap-1.5 p-3 rounded-xl', {
+    card: cva('cursor-pointer flex items-center gap-1.5 pt-2.5 pb-2 px-3.5 rounded-xl', {
       variants: {
         selected: {
           true: 'text-white bg-blue-500',
