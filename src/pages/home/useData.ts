@@ -20,7 +20,6 @@ export const useData = () => {
   const {
     handleSubmit,
     control,
-    watch,
     formState: { errors },
   } = useForm<CalculateBmiFormValues>({
     mode: 'onSubmit',
@@ -37,8 +36,6 @@ export const useData = () => {
   }, [])
 
   const handleSubmitFinish = () => {}
-
-  console.log(watch(), errors)
 
   return { unitSelected, handleUnitSelected, handleSubmit, control, errors, handleSubmitFinish }
 }

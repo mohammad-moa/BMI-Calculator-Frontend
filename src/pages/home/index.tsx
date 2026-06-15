@@ -52,32 +52,52 @@ export const HomePage: React.FC<HomePageProps> = () => {
             />
           )}
         />
-        <TextField
-          fullWidth
-          isRequired
-          type='number'
-          label={TX('HOME.WEIGHT')}
-          color='primary'
-          endIcon={
-            <div className={className.units()}>
-              {renderUnits('weight', WeightEnum.KG, TX('HOME.KG'))}
-              {renderUnits('weight', WeightEnum.LG, TX('HOME.LB'))}
-            </div>
-          }
-        />
-        <TextField
-          fullWidth
-          isRequired
-          type='number'
-          label={TX('HOME.HEIGHT')}
-          color='primary'
-          endIcon={
-            <div className={className.units()}>
-              {renderUnits('height', HeightEnum.CM, TX('HOME.CM'))}
-              {renderUnits('height', HeightEnum.FT, TX('HOME.FT'))}
-            </div>
-          }
-        />
+        <div className={className.fieldContainer()}>
+          <Controller
+            control={data.control}
+            name='weight'
+            render={({ field }) => (
+              <TextField
+                {...field}
+                fullWidth
+                isRequired
+                type='number'
+                label={TX('HOME.WEIGHT')}
+                color='primary'
+                endIcon={
+                  <div className={className.units()}>
+                    {renderUnits('weight', WeightEnum.KG, TX('HOME.KG'))}
+                    {renderUnits('weight', WeightEnum.LG, TX('HOME.LB'))}
+                  </div>
+                }
+                isError={!!data.errors.weight?.message}
+                helperText={data.errors.weight?.message}
+              />
+            )}
+          />
+          <Controller
+            control={data.control}
+            name='height'
+            render={({ field }) => (
+              <TextField
+                {...field}
+                fullWidth
+                isRequired
+                type='number'
+                label={TX('HOME.HEIGHT')}
+                color='primary'
+                endIcon={
+                  <div className={className.units()}>
+                    {renderUnits('height', HeightEnum.CM, TX('HOME.CM'))}
+                    {renderUnits('height', HeightEnum.FT, TX('HOME.FT'))}
+                  </div>
+                }
+                isError={!!data.errors.height?.message}
+                helperText={data.errors.height?.message}
+              />
+            )}
+          />
+        </div>
         <Button type='submit' size='large'>
           {TX('HOME.CALCULATE')}
         </Button>
