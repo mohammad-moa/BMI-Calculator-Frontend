@@ -1,7 +1,8 @@
-import { HeightEnum, WeightEnum } from '@enums'
 import { z } from 'zod'
+import { GenderEnum, HeightEnum, WeightEnum } from '@enums'
 
 export const calculateBmiFormSchema = z.object({
+  gender: z.enum(GenderEnum).optional(),
   age: z.string('Age is required'),
   weight: z.string('Weight is required'),
   weightUnit: z.enum(WeightEnum).optional(),

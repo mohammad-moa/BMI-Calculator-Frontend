@@ -2,11 +2,11 @@ import { Controller } from 'react-hook-form'
 // images
 import BmiChart from '@assets/images/bmi-chart.png'
 // icons
-import { Flame } from '@icons'
+import { Flame, GenderFemale, GenderMale } from '@icons'
 // components
 import { Button, TextField } from '@components'
 // enums
-import { HeightEnum, WeightEnum } from '@enums'
+import { GenderEnum, HeightEnum, WeightEnum } from '@enums'
 // hooks
 import { useText } from '@hooks'
 // locals
@@ -19,6 +19,32 @@ export const HomePage: React.FC<HomePageProps> = () => {
   const className = useClasses()
   const { TX } = useText()
   const data = useData()
+
+  const renderGender = () => {
+    return (
+      <div>
+        <h4>{TX('HOME.GENDER')} *</h4>
+        <div className={className.cards()}>
+          <span
+            className={className.card({
+              selected: data.watch('gender') === GenderEnum.MALE,
+            })}
+            onClick={() => data.setFormValue('gender', GenderEnum.MALE)}
+          >
+            <GenderMale /> {TX('HOME.MALE')}
+          </span>
+          <span
+            className={className.card({
+              selected: data.watch('gender') === GenderEnum.FEMALE,
+            })}
+            onClick={() => data.setFormValue('gender', GenderEnum.FEMALE)}
+          >
+            <GenderFemale /> {TX('HOME.FEMALE')}
+          </span>
+        </div>
+      </div>
+    )
+  }
 
   const renderUnits = (key: keyof Units, unit: Units[keyof Units], text: string) => {
     return (
@@ -36,6 +62,7 @@ export const HomePage: React.FC<HomePageProps> = () => {
   const renderForm = () => {
     return (
       <form className={className.form()} onSubmit={data.handleSubmit(data.handleSubmitFinish)}>
+        {renderGender()}
         <Controller
           control={data.control}
           name='age'

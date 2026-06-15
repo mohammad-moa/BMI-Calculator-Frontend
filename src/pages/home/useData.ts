@@ -3,7 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 // schemas
 import { calculateBmiFormSchema, CalculateBmiFormValues } from '@schemas'
 // enums
-import { HeightEnum, WeightEnum } from '@enums'
+import { GenderEnum, HeightEnum, WeightEnum } from '@enums'
 
 export type Units = Pick<CalculateBmiFormValues, 'weightUnit' | 'heightUnit'>
 
@@ -18,6 +18,7 @@ export const useData = () => {
     mode: 'onSubmit',
     resolver: zodResolver(calculateBmiFormSchema),
     defaultValues: {
+      gender: GenderEnum.MALE,
       weightUnit: WeightEnum.KG,
       heightUnit: HeightEnum.CM,
     },
