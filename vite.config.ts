@@ -6,7 +6,7 @@ import svgr from 'vite-plugin-svgr'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/BMI-Calculator/', // For Github Actions
+  base: '/BMI-Calculator-Frontend/', // For Github Actions
   plugins: [
     react(),
     tailwindcss(),

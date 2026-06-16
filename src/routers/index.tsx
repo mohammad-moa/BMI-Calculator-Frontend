@@ -21,6 +21,6 @@ export const router = createBrowserRouter(
     },
   ],
   {
-    basename: '/BMI-Calculator', // For Github Actions
+    basename: '/BMI-Calculator-Frontend', // For Github Actions
   }
 )
