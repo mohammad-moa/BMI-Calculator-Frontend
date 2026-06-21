@@ -1,6 +1,8 @@
 import { memo } from 'react'
 // components
 import { Drawer } from '@components'
+// models
+import { Bmi } from '@models'
 // hooks
 import { useText } from '@hooks'
 // locals
@@ -9,11 +11,11 @@ import { useClasses } from './useClasses'
 type ResultBmiDrawerProps = {
   isOpen: boolean
   onClose: () => void
-  item: any
+  item: Bmi
 }
 
 export const ResultBmiDrawer: React.FC<ResultBmiDrawerProps> = memo(
-  ({ isOpen = false, onClose = () => undefined }) => {
+  ({ isOpen = false, onClose = () => undefined, item = new Bmi() }) => {
     const className = useClasses()
     const { TX } = useText()
 
@@ -23,7 +25,9 @@ export const ResultBmiDrawer: React.FC<ResultBmiDrawerProps> = memo(
         onClose={onClose}
         header={TX('HOME.RESULT')}
         className={className.root()}
-      ></Drawer>
+      >
+        <h3>{item.getBmi()}</h3>
+      </Drawer>
     )
   }
 )

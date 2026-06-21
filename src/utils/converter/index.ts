@@ -13,3 +13,12 @@ export const convertHeightToCentimeter = (value: number, unit: `${HeightEnum}`):
     ft: value * 30.48,
   }[unit]
 }
+
+export const capitalizeString = (text: string) => {
+  if (!text) return ''
+  const splitTexts = text.replaceAll('_', ' ').split(' ')
+  const convertText = splitTexts
+    .map((splitText) => splitText.charAt(0).toUpperCase() + splitText.slice(1))
+    .join(' ')
+  return convertText
+}
