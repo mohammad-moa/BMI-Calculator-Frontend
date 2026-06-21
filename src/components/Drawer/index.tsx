@@ -22,6 +22,7 @@ export type DrawerProps = React.HTMLAttributes<HTMLDivElement> & {
   size?: SizeType
   disableBackdrop?: boolean
   rootClassName?: string
+  contentClassName?: string
 }
 
 export const Drawer: React.FC<DrawerProps> = memo(
@@ -36,6 +37,7 @@ export const Drawer: React.FC<DrawerProps> = memo(
     size,
     disableBackdrop = false,
     rootClassName,
+    contentClassName,
   }) => {
     useData({ open, onClose })
     const className = useClasses()
@@ -91,7 +93,7 @@ export const Drawer: React.FC<DrawerProps> = memo(
             >
               {renderHeader()}
               {renderSubHeader()}
-              <div className={className.content()}>{children}</div>
+              <div className={makeClass(className.content(), contentClassName)}>{children}</div>
               {renderActions()}
             </div>
           ) : null}

@@ -49,6 +49,36 @@ export const useClasses = () => {
           color: 'error',
           class: 'shadow-red-200',
         },
+        {
+          variant: 'standard',
+          color: 'primary',
+          class: 'bg-orange-100',
+        },
+        {
+          variant: 'standard',
+          color: 'secondary',
+          class: 'bg-zinc-100',
+        },
+        {
+          variant: 'standard',
+          color: 'info',
+          class: 'bg-blue-100',
+        },
+        {
+          variant: 'standard',
+          color: 'success',
+          class: 'bg-green-100',
+        },
+        {
+          variant: 'standard',
+          color: 'warning',
+          class: 'bg-amber-100',
+        },
+        {
+          variant: 'standard',
+          color: 'error',
+          class: 'bg-red-100',
+        },
       ],
       defaultVariants: {
         variant: 'elevation',

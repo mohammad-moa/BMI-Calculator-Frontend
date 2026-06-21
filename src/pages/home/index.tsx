@@ -127,7 +127,7 @@ export const HomePage: React.FC<HomePageProps> = () => {
             )}
           />
         </div>
-        <Button type='submit' size='large' className='w-full'>
+        <Button type='submit' size='large'>
           {TX('HOME.CALCULATE')}
         </Button>
       </form>

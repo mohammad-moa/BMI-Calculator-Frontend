@@ -1,6 +1,6 @@
 import { memo } from 'react'
 // components
-import { Drawer } from '@components'
+import { Card, Drawer } from '@components'
 // models
 import { Bmi } from '@models'
 // hooks
@@ -24,7 +24,7 @@ export const ResultBmiDrawer: React.FC<ResultBmiDrawerProps> = memo(
         open={isOpen}
         onClose={onClose}
         header={TX('HOME.RESULT')}
-        className={className.root()}
+        contentClassName={className.content()}
         actions={{
           cancel: {
             fullWidth: true,
@@ -33,13 +33,17 @@ export const ResultBmiDrawer: React.FC<ResultBmiDrawerProps> = memo(
           },
         }}
       >
-        <h3>
-          {TX('HOME.BMI')}: {item.getBmi()}
+        <h3 className={className.bmi()}>
+          <span>{TX('HOME.BMI')}</span> {item.getBmi()}
         </h3>
-        <h4>
-          {TX('HOME.BODY_FAT')}: {item.getBodyFat()}
-        </h4>
-        <p>{TX('HOME.BMI_STATUS_MESSAGE', item.getStatusDisplay())}</p>
+        <div className={className.details()}>
+          <Card variant='standard' color='info' rootClassName={className.bodyFat()}>
+            <span>{TX('HOME.BODY_FAT')}:</span> {item.getBodyFat()}
+          </Card>
+          <p className={className.message()}>
+            {TX('HOME.BMI_STATUS_MESSAGE', item.getStatusDisplay())}
+          </p>
+        </div>
       </Drawer>
     )
   }
