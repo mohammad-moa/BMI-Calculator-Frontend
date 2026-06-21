@@ -16,5 +16,9 @@
   "HOME.CM": "Cm",
   "HOME.FT": "Ft",
   "HOME.CALCULATE": "Calculate",
-  "HOME.RESULT": "Result"
+  "HOME.RESULT": "Result",
+  "HOME.BMI": "BMI",
+  "HOME.BODY_FAT": "Body Fat",
+  "HOME.BMI_STATUS_MESSAGE": "Your BMI status is {1}",
+  "HOME.I_UNDERSTAND": "I understand"
 }

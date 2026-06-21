@@ -13,7 +13,7 @@ export const useClasses = () => {
     content: cva('flex gap-2.5 my-1 text-gray-900 rounded-lg', {
       variants: {
         isError: {
-          true: 'text-red-500 !border-red-500',
+          true: 'text-red-500 border-red-500!',
           false: '',
         },
         variant: {

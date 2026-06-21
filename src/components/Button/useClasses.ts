@@ -7,7 +7,7 @@ export const useClasses = () => {
       {
         variants: {
           variant: {
-            contained: '!text-white',
+            contained: 'text-white!',
             outlined: 'border-2',
             text: 'border-0',
           },
@@ -23,6 +23,10 @@ export const useClasses = () => {
             small: 'py-2 px-6 text-sm',
             medium: 'py-2.5 px-9 text-base',
             large: 'py-3 px-11 text-lg',
+          },
+          fullWidth: {
+            true: 'w-full',
+            false: '',
           },
         },
         compoundVariants: [

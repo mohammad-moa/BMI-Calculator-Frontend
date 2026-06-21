@@ -14,7 +14,7 @@ export type DialogProps = Omit<React.DialogHTMLAttributes<HTMLDialogElement>, 'o
   onClose: () => void
   header: React.ReactNode
   subHeader?: React.ReactNode
-  actions?: Record<'confirm' | 'cancel', ButtonProps> | ButtonProps[]
+  actions?: Partial<Record<'confirm' | 'cancel', ButtonProps>> | ButtonProps[]
   size?: SizeType
   disableBackdrop?: boolean
   rootClassName?: string
@@ -53,10 +53,12 @@ export const Dialog: React.FC<DialogProps> = memo(
       if (!Array.isArray(actions)) {
         return (
           <div className={className.actions()}>
-            <Button {...actions.confirm}>{actions.confirm.children}</Button>
-            <Button variant='text' onClick={onClose} {...actions.cancel}>
-              {actions.cancel.children}
-            </Button>
+            {actions.confirm && <Button {...actions.confirm}>{actions.confirm?.children}</Button>}
+            {actions.cancel && (
+              <Button variant='text' onClick={onClose} {...actions.cancel}>
+                {actions.cancel?.children}
+              </Button>
+            )}
           </div>
         )
       }

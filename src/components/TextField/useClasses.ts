@@ -9,7 +9,7 @@ export const useClasses = () => {
           false: 'w-1/2',
         },
         isError: {
-          true: 'text-red-500 !border-red-500',
+          true: 'text-red-500 border-red-500!',
           false: '',
         },
         variant: {

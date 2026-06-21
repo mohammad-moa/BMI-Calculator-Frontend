@@ -25,8 +25,21 @@ export const ResultBmiDrawer: React.FC<ResultBmiDrawerProps> = memo(
         onClose={onClose}
         header={TX('HOME.RESULT')}
         className={className.root()}
+        actions={{
+          cancel: {
+            fullWidth: true,
+            variant: 'contained',
+            children: TX('HOME.I_UNDERSTAND'),
+          },
+        }}
       >
-        <h3>{item.getBmi()}</h3>
+        <h3>
+          {TX('HOME.BMI')}: {item.getBmi()}
+        </h3>
+        <h4>
+          {TX('HOME.BODY_FAT')}: {item.getBodyFat()}
+        </h4>
+        <p>{TX('HOME.BMI_STATUS_MESSAGE', item.getStatusDisplay())}</p>
       </Drawer>
     )
   }

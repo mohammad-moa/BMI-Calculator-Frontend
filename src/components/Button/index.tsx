@@ -12,6 +12,7 @@ export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: ButtonVariant
   color?: ColorType
   size?: SizeType
+  fullWidth?: boolean
   rootClassName?: string
   startIcon?: React.ReactNode
   endIcon?: React.ReactNode
@@ -23,6 +24,7 @@ export const Button: React.FC<ButtonProps> = memo(
     variant = 'contained',
     color = 'primary',
     size = 'medium',
+    fullWidth = false,
     rootClassName,
     startIcon,
     endIcon,
@@ -41,13 +43,18 @@ export const Button: React.FC<ButtonProps> = memo(
     }
 
     return (
-      <div className={makeClass(rootClassName)}>
+      <div
+        className={makeClass(rootClassName, {
+          'w-full': fullWidth,
+        })}
+      >
         <button
           className={makeClass(
             className.button({
               variant,
               color,
               size,
+              fullWidth,
             }),
             props.className
           )}
