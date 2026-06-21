@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 // schemas
@@ -10,6 +11,8 @@ import { GenderEnum, HeightEnum, WeightEnum } from '@enums'
 export type Units = Pick<CalculateBmiFormValues, 'weightUnit' | 'heightUnit'>
 
 export const useData = () => {
+  const [isOpenDrawer, setIsOpenDrawer] = useState(false)
+
   const {
     handleSubmit,
     control,
@@ -37,6 +40,8 @@ export const useData = () => {
   }
 
   return {
+    isOpenDrawer,
+    setIsOpenDrawer,
     handleSubmit,
     control,
     watch,

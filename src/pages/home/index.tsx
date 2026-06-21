@@ -12,6 +12,7 @@ import { useText } from '@hooks'
 // locals
 import { useClasses } from './useClasses'
 import { Units, useData } from './useData'
+import { ResultBmiDrawer } from './components'
 
 type HomePageProps = {}
 
@@ -147,6 +148,11 @@ export const HomePage: React.FC<HomePageProps> = () => {
       <div className={className.image()}>
         <img src={BmiChart} alt='bmi-chart' />
       </div>
+      <ResultBmiDrawer
+        isOpen={data.isOpenDrawer}
+        onClose={() => data.setIsOpenDrawer(false)}
+        item={{}}
+      />
     </div>
   )
 }
