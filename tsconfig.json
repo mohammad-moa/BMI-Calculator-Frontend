@@ -40,7 +40,9 @@
       "@icons": ["./src/icons/index.ts"],
       "@icons/*": ["./src/icons/*"],
       "@models": ["./src/models/index.ts"],
-      "@models/*": ["./src/models/*"]
+      "@models/*": ["./src/models/*"],
+      "@providers": ["./src/providers/index.ts"],
+      "@providers/*": ["./src/providers/*"]
     }
   },
   "include": ["src"],

@@ -2,15 +2,19 @@ import { FC, Suspense } from 'react'
 import { Outlet } from 'react-router'
 // layouts
 import { Footer, Header } from '@layouts'
+// providers
+import { ApiProviders } from '@providers'
 
 const App: FC = () => {
   return (
     <Suspense fallback={<>Loading ...</>}>
-      <div className='flex flex-col h-screen'>
-        <Header />
-        <Outlet />
-        <Footer />
-      </div>
+      <ApiProviders>
+        <div className='flex flex-col h-screen'>
+          <Header />
+          <Outlet />
+          <Footer />
+        </div>
+      </ApiProviders>
     </Suspense>
   )
 }
