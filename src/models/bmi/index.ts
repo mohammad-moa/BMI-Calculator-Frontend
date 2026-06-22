@@ -68,4 +68,13 @@ export class Bmi {
   getStatusDisplay(): string {
     return capitalizeString(this.getStatus())
   }
+
+  /* --------------------------------- Static --------------------------------- */
+
+  static generateBmiStatus(bmi: number): BmiStatusEnum {
+    if (bmi < 18.5) return BmiStatusEnum.UNDER_WEIGHT
+    if (bmi < 25) return BmiStatusEnum.NORMAL
+    if (bmi < 30) return BmiStatusEnum.OVER_WEIGHT
+    return BmiStatusEnum.OBESE
+  }
 }

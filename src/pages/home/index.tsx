@@ -13,7 +13,6 @@ import { useText } from '@hooks'
 import { useClasses } from './useClasses'
 import { Units, useData } from './useData'
 import { ResultBmiDrawer } from './components'
-import { Bmi } from '@models'
 
 type HomePageProps = {}
 
@@ -152,12 +151,7 @@ export const HomePage: React.FC<HomePageProps> = () => {
       <ResultBmiDrawer
         isOpen={data.isOpenDrawer}
         onClose={() => data.setIsOpenDrawer(false)}
-        item={
-          new Bmi({
-            bmi: 17,
-            bodyFat: 20,
-          })
-        }
+        item={data.bmi}
       />
     </div>
   )
