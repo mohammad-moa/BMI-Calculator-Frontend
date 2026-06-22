@@ -39,7 +39,7 @@ export const Drawer: React.FC<DrawerProps> = memo(
     rootClassName,
     contentClassName,
   }) => {
-    useData({ open, onClose })
+    const data = useData({ open, onClose })
     const className = useClasses()
     const drawerRoot = document.getElementById('modal')
     if (!drawerRoot || !open) return null
@@ -83,6 +83,7 @@ export const Drawer: React.FC<DrawerProps> = memo(
           {!disableBackdrop && <div className={className.backdrop()}></div>}
           {open ? (
             <div
+              ref={data.drawerRef}
               className={makeClass(
                 className.dialog({
                   position,

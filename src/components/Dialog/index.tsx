@@ -33,7 +33,7 @@ export const Dialog: React.FC<DialogProps> = memo(
     rootClassName,
     ...props
   }) => {
-    useData({ open, onClose })
+    const data = useData({ open, onClose })
     const className = useClasses()
     const dialogRoot = document.getElementById('modal')
     if (!dialogRoot || !open) return null
@@ -78,6 +78,7 @@ export const Dialog: React.FC<DialogProps> = memo(
           <dialog
             open={open}
             onClose={onClose}
+            ref={data.dialogRef}
             className={makeClass(
               className.dialog({
                 size,
