@@ -4,7 +4,14 @@ import { createPortal } from 'react-dom'
 import { Button } from '@components/Button'
 import { ColorType } from '@components/index.type'
 // icons
-import { AlertSquareRounded, Close, Loader, SquareRoundedCheck, SquareRoundedClose } from '@icons'
+import {
+  AlertSquareRounded,
+  Close,
+  Loader,
+  Refresh,
+  SquareRoundedCheck,
+  SquareRoundedClose,
+} from '@icons'
 // utils
 import { makeClass } from '@utils/styles'
 // locals
@@ -19,7 +26,7 @@ export type ToastPosition =
   | 'bottom-left'
   | 'bottom-center'
 
-export type ToastIcon = 'success' | 'error' | 'warning' | 'loading'
+export type ToastIcon = 'success' | 'error' | 'warning' | 'loading' | 'refresh'
 
 export type ToastProps = React.HTMLAttributes<HTMLDivElement> & {
   open: boolean
@@ -62,6 +69,7 @@ export const Toast: React.FC<ToastProps> = memo(
         error: <SquareRoundedClose />,
         warning: <AlertSquareRounded />,
         loading: <Loader />,
+        refresh: <Refresh />,
       }[icon]
     }
 
