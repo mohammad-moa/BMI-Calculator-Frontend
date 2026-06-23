@@ -18,6 +18,8 @@ import { makeClass } from '@utils/styles'
 import { useClasses } from './useClasses'
 import { useData } from './useData'
 
+export type ToastVariant = 'elevation' | 'outlined'
+
 export type ToastPosition =
   | 'top-right'
   | 'top-left'
@@ -35,6 +37,7 @@ export type ToastProps = React.HTMLAttributes<HTMLDivElement> & {
   description?: string
   color?: ColorType
   position?: ToastPosition
+  variant?: ToastVariant
   icon?: ToastIcon
   autoCloseDuration?: number
   onConfirm?: () => void
@@ -50,6 +53,7 @@ export const Toast: React.FC<ToastProps> = memo(
     description,
     color = 'primary',
     position = 'top-center',
+    variant = 'outlined',
     icon,
     autoCloseDuration = 3000,
     onConfirm,
@@ -97,6 +101,7 @@ export const Toast: React.FC<ToastProps> = memo(
             className.toast({
               position,
               color,
+              variant,
             }),
             rootClassName
           )}

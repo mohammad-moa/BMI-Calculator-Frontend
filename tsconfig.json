@@ -21,28 +21,7 @@
     "noFallthroughCasesInSwitch": true,
 
     "paths": {
-      "@components": ["./src/components/index.ts"],
-      "@components/*": ["./src/components/*"],
-      "@hooks": ["./src/hooks/index.ts"],
-      "@hooks/*": ["./src/hooks/*"],
-      "@layouts": ["./src/layouts/index.ts"],
-      "@layouts/*": ["./src/layouts/*"],
-      "@pages": ["./src/pages/index.ts"],
-      "@pages/*": ["./src/pages/*"],
-      "@constants/*": ["./src/constants/*"],
-      "@routers": ["./src/routers/index.tsx"],
-      "@enums": ["./src/enums/index.ts"],
-      "@enums/*": ["./src/enums/*"],
-      "@schemas": ["./src/schemas/index.ts"],
-      "@schemas/*": ["./src/schemas/*"],
-      "@assets/*": ["./src/assets/*"],
-      "@utils/*": ["./src/utils/*"],
-      "@icons": ["./src/icons/index.ts"],
-      "@icons/*": ["./src/icons/*"],
-      "@models": ["./src/models/index.ts"],
-      "@models/*": ["./src/models/*"],
-      "@providers": ["./src/providers/index.ts"],
-      "@providers/*": ["./src/providers/*"]
+      "@*": ["./src/*"]
     }
   },
   "include": ["src"],

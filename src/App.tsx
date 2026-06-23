@@ -8,15 +8,15 @@ import { ApiProviders, ToastProvider } from '@providers'
 const App: FC = () => {
   return (
     <Suspense fallback={<>Loading ...</>}>
-      <ApiProviders>
-        <ToastProvider>
+      <ToastProvider>
+        <ApiProviders>
           <div className='flex flex-col h-screen'>
             <Header />
             <Outlet />
             <Footer />
           </div>
-        </ToastProvider>
-      </ApiProviders>
+        </ApiProviders>
+      </ToastProvider>
     </Suspense>
   )
 }

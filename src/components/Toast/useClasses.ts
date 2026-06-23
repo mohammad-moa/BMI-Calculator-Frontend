@@ -3,7 +3,7 @@ import { cva } from 'class-variance-authority'
 export const useClasses = () => {
   return {
     toast: cva(
-      'fixed z-50 flex flex-col justify-start gap-5 p-4 rounded-xl border bg-white shadow-xl shadow-gray-200 min-w-[320px] max-w-112.5',
+      'fixed z-50 flex flex-col justify-start gap-5 p-4 rounded-xl bg-white min-w-[320px] max-w-112.5',
       {
         variants: {
           position: {
@@ -21,6 +21,10 @@ export const useClasses = () => {
             success: 'border-green-200 bg-green-50',
             warning: 'border-amber-200 bg-amber-50',
             error: 'border-red-200 bg-red-50',
+          },
+          variant: {
+            elevation: 'shadow-xl shadow-gray-200/50',
+            outlined: 'border',
           },
         },
       }
