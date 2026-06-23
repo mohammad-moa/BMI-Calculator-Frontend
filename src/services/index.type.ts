@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from 'axios'
 
 export type ServerError = {
   error: string
-  message: string
+  message: string | string[]
   statusCode: number
 }
 

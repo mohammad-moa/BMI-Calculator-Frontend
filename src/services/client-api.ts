@@ -1,6 +1,7 @@
 import axiosInstance, { AxiosError, AxiosInstance } from 'axios'
 import config from './config'
 import { LocalStorageService } from './storage'
+import { generateUUID } from '@utils'
 
 class ClientApi {
   http: AxiosInstance
@@ -12,10 +13,16 @@ class ClientApi {
     })
 
     this.http.interceptors.request.use((request) => {
-      const token = LocalStorageService.get<string>('token')
+      const token = LocalStorageService.get<string>(config.token)
       if (token) {
         request.headers.Authorization = `Bearer ${token}`
+      } else {
+        const guestId = this.generateGuestId()
+        console.log(guestId)
+
+        request.headers['x-guest-id'] = guestId
       }
+
       return request
     })
     this.http.interceptors.response.use(
@@ -25,17 +32,26 @@ class ClientApi {
         if (error.response) {
           switch (error.response.status) {
             case 401:
-              LocalStorageService.remove('token')
-              return Promise.reject(error)
+              LocalStorageService.remove(config.token)
+              return Promise.reject(error.response.data)
             default:
               return Promise.reject(error.response.data)
           }
-        } else if (message === `timeout of ${config.timeout}ms exceeded`) {
+        } else if (message.includes('timeout')) {
           message = 'Network Error'
         }
         return Promise.reject({ message })
       }
     )
+  }
+
+  private generateGuestId() {
+    let guestId = LocalStorageService.get<string>(config.guestId)
+    if (!guestId) {
+      guestId = generateUUID()
+      LocalStorageService.set(config.guestId, guestId)
+    }
+    return guestId
   }
 }
 
