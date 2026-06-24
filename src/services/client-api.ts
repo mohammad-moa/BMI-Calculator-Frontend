@@ -18,8 +18,6 @@ class ClientApi {
         request.headers.Authorization = `Bearer ${token}`
       } else {
         const guestId = this.generateGuestId()
-        console.log(guestId)
-
         request.headers['x-guest-id'] = guestId
       }
 

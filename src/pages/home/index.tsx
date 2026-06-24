@@ -77,6 +77,7 @@ export const HomePage: React.FC<HomePageProps> = () => {
               color='primary'
               isError={!!data.errors.age?.message}
               helperText={data.errors.age?.message}
+              onChange={(e) => field.onChange(e.target.value === '' ? '' : Number(e.target.value))}
             />
           )}
         />
@@ -100,6 +101,9 @@ export const HomePage: React.FC<HomePageProps> = () => {
                 }
                 isError={!!data.errors.weight?.message}
                 helperText={data.errors.weight?.message}
+                onChange={(e) =>
+                  field.onChange(e.target.value === '' ? '' : Number(e.target.value))
+                }
               />
             )}
           />
@@ -122,6 +126,9 @@ export const HomePage: React.FC<HomePageProps> = () => {
                 }
                 isError={!!data.errors.height?.message}
                 helperText={data.errors.height?.message}
+                onChange={(e) =>
+                  field.onChange(e.target.value === '' ? '' : Number(e.target.value))
+                }
               />
             )}
           />
