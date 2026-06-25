@@ -55,7 +55,7 @@ export const Toast: React.FC<ToastProps> = memo(
     position = 'top-center',
     variant = 'outlined',
     icon,
-    autoCloseDuration = 3000,
+    autoCloseDuration = 4500,
     onConfirm,
     confirmLabel = 'Confirm',
     rootClassName,

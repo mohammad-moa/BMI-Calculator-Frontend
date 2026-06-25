@@ -1,6 +1,9 @@
 {
   "HISTORY": "History",
   "COMING_SOON": "coming soon",
+  "SYNCING": "Syncing",
+  "INFORMATION_WAS_SUCCESSFULLY": "Information saved successfully",
+  "RETRY": "Retry",
   "FOOTER.COPYRIGHT": "Made with ❤ by Mohammad Ahrari",
   "HOME.STAY_FIT": "Stay Fit",
   "HOME.BMI_CALCULATOR": "BMI Calculator",

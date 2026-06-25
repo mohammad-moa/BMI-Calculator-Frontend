@@ -12,13 +12,14 @@ import { GenderEnum, HeightEnum, WeightEnum } from '@enums'
 // utils
 import { convertHeightToCentimeter, convertWeightToKilogram, generateServerError } from '@utils'
 // hooks
-import { useToast } from '@hooks'
+import { useText, useToast } from '@hooks'
 
 export type Units = Pick<CalculateBmiFormValues, 'weightUnit' | 'heightUnit'>
 
 export const useData = () => {
   const [isOpenDrawer, setIsOpenDrawer] = useState(false)
   const [bmi, setBmi] = useState<Bmi>(new Bmi())
+  const { TX } = useText()
   const { toast } = useToast()
 
   const {
@@ -41,34 +42,47 @@ export const useData = () => {
 
   /* -------------------------------- Handlers -------------------------------- */
 
-  const handleSubmitFinish = () => {
-    const weight = convertWeightToKilogram(watch('weight'), watch('weightUnit'))
-    const height = convertHeightToCentimeter(watch('height'), watch('heightUnit')) / 100
-    const bmi = weight / (height * height)
-    const genderFactor = watch('gender') === GenderEnum.MALE ? 1 : 0
-    const bodyFat = 1.2 * bmi + 0.23 * watch('age') - 10.8 * genderFactor - 5.4
+  const handleCalculateBmi = (values: CalculateBmiFormValues) => {
+    const weight = convertWeightToKilogram(values.weight, values.weightUnit)
+    const height = convertHeightToCentimeter(values.height, values.heightUnit) / 100
+    const bmiValue = weight / (height * height)
+    const genderFactor = values.gender === GenderEnum.MALE ? 1 : 0
+    const bodyFat = 1.2 * bmiValue + 0.23 * values.age - 10.8 * genderFactor - 5.4
     setBmi(
       new Bmi({
-        ...watch(),
-        bmi: parseFloat(bmi.toFixed(2)),
+        ...values,
+        bmi: parseFloat(bmiValue.toFixed(2)),
         bodyFat: parseFloat(bodyFat.toFixed(2)),
-        status: Bmi.generateBmiStatus(bmi),
+        status: Bmi.generateBmiStatus(bmiValue),
       })
     )
-    createBmi.mutate(
-      {
-        data: watch(),
-      },
-      {
-        onError: (error) => {
-          toast({
-            message: generateServerError(error),
-            color: 'error',
-          })
-        },
-      }
-    )
+  }
+
+  const handleCreateBmiToServer = async (values: CalculateBmiFormValues) => {
+    try {
+      toast({
+        message: TX('SYNCING'),
+        color: 'info',
+      })
+      await createBmi.mutateAsync({ data: values })
+      toast({
+        message: TX('INFORMATION_WAS_SUCCESSFULLY'),
+        color: 'success',
+      })
+    } catch (error) {
+      toast({
+        message: generateServerError(error),
+        color: 'error',
+        confirmLabel: TX('RETRY'),
+        onConfirm: () => handleCreateBmiToServer(values),
+      })
+    }
+  }
+
+  const handleSubmitFinish = (values: CalculateBmiFormValues) => {
+    handleCalculateBmi(values)
     setIsOpenDrawer(true)
+    handleCreateBmiToServer(values)
   }
 
   return {
