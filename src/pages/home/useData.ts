@@ -63,6 +63,7 @@ export const useData = () => {
       toast({
         message: TX('SYNCING'),
         color: 'info',
+        autoCloseDuration: 0,
       })
       await createBmi.mutateAsync({ data: values })
       toast({
