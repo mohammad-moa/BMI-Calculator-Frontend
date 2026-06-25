@@ -1,18 +1,9 @@
 import { useState } from 'react'
 import { MutationCache, QueryCache, QueryClient, QueryClientProvider } from '@tanstack/react-query'
+// utils
+import { generateServerError } from '@utils'
+// hooks
 import { useToast } from '@hooks'
-import { ServerError } from '@services'
-
-const getServerError = (error: unknown): string => {
-  if (error && typeof error === 'object') {
-    const serverMessage = error as ServerError
-    if (Array.isArray(serverMessage.message)) {
-      return serverMessage.message.join(', ')
-    }
-    return serverMessage.message
-  }
-  return error instanceof Error ? error.message : 'An unexpected error occurred'
-}
 
 export const ApiProviders: React.FC<React.PropsWithChildren> = ({ children }) => {
   const { toast } = useToast()
@@ -29,7 +20,7 @@ export const ApiProviders: React.FC<React.PropsWithChildren> = ({ children }) =>
         queryCache: new QueryCache({
           onError: (error) => {
             toast({
-              message: getServerError(error),
+              message: generateServerError(error),
               color: 'error',
             })
           },
@@ -37,7 +28,7 @@ export const ApiProviders: React.FC<React.PropsWithChildren> = ({ children }) =>
         mutationCache: new MutationCache({
           onError: (error) => {
             toast({
-              message: getServerError(error),
+              message: generateServerError(error),
               color: 'error',
             })
           },

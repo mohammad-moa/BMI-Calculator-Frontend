@@ -3,18 +3,23 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 // schemas
 import { calculateBmiFormSchema, CalculateBmiFormValues } from '@schemas'
+// apis
+import { useCreateBmi } from '@apis'
 // models
 import { Bmi } from '@models'
 // enums
 import { GenderEnum, HeightEnum, WeightEnum } from '@enums'
 // utils
-import { convertHeightToCentimeter, convertWeightToKilogram } from '@utils/converter'
+import { convertHeightToCentimeter, convertWeightToKilogram, generateServerError } from '@utils'
+// hooks
+import { useToast } from '@hooks'
 
 export type Units = Pick<CalculateBmiFormValues, 'weightUnit' | 'heightUnit'>
 
 export const useData = () => {
   const [isOpenDrawer, setIsOpenDrawer] = useState(false)
   const [bmi, setBmi] = useState<Bmi>(new Bmi())
+  const { toast } = useToast()
 
   const {
     handleSubmit,
@@ -32,6 +37,8 @@ export const useData = () => {
     },
   })
 
+  const createBmi = useCreateBmi()
+
   /* -------------------------------- Handlers -------------------------------- */
 
   const handleSubmitFinish = () => {
@@ -47,6 +54,19 @@ export const useData = () => {
         bodyFat: parseFloat(bodyFat.toFixed(2)),
         status: Bmi.generateBmiStatus(bmi),
       })
+    )
+    createBmi.mutate(
+      {
+        data: watch(),
+      },
+      {
+        onError: (error) => {
+          toast({
+            message: generateServerError(error),
+            color: 'error',
+          })
+        },
+      }
     )
     setIsOpenDrawer(true)
   }

@@ -6,6 +6,6 @@ import { CalculateBmiFormValues } from '@schemas'
 import { Bmi } from '@models'
 
 export const create = async ({ data }: MutationRequest<CalculateBmiFormValues>) => {
-  const response = await axios.post<Bmi>('/bmi', data)
+  const response = await axios.post<Bmi>('/bmiw', data)
   return response.data
 }
