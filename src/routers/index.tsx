@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router'
 // pages
-import { HomePage } from '@pages'
+import { HistoryPage, HomePage } from '@pages'
 // constants
 import { HISTORY_ROUTE, MAIN_ROUTE } from '@constants/routes'
 // locals
@@ -15,7 +15,7 @@ export const router = createBrowserRouter(
         { index: true, element: <HomePage /> },
         {
           path: HISTORY_ROUTE,
-          element: <>History</>,
+          element: <HistoryPage />,
         },
       ],
     },
