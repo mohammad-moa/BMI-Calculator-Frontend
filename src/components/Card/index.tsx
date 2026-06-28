@@ -16,12 +16,12 @@ export type CardProps = React.HTMLAttributes<HTMLDivElement> & {
 
 export const Card: React.FC<CardProps> = memo(
   ({ children, variant = 'elevation', color = 'primary', rootClassName, ...props }) => {
-    const className = useClasses()
+    const classes = useClasses()
 
     return (
       <div
         className={makeClass(
-          className.card({
+          classes.card({
             variant,
             color,
           }),

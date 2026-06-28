@@ -25,12 +25,13 @@ export const Button: React.FC<ButtonProps> = memo(
     color = 'primary',
     size = 'medium',
     fullWidth = false,
+    className,
     rootClassName,
     startIcon,
     endIcon,
     ...props
   }) => {
-    const className = useClasses()
+    const classes = useClasses()
 
     const renderStartIcon = () => {
       if (!startIcon) return null
@@ -50,13 +51,13 @@ export const Button: React.FC<ButtonProps> = memo(
       >
         <button
           className={makeClass(
-            className.button({
+            classes.button({
               variant,
               color,
               size,
               fullWidth,
             }),
-            props.className
+            className
           )}
           {...props}
         >

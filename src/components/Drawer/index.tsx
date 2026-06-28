@@ -40,25 +40,25 @@ export const Drawer: React.FC<DrawerProps> = memo(
     contentClassName,
   }) => {
     const data = useData({ open, onClose })
-    const className = useClasses()
+    const classes = useClasses()
     const drawerRoot = document.getElementById('modal')
     if (!drawerRoot || !open) return null
 
     const renderHeader = () => {
       if (!header) return null
-      return <h4 className={className.header()}>{header}</h4>
+      return <h4 className={classes.header()}>{header}</h4>
     }
 
     const renderSubHeader = () => {
       if (!subHeader) return null
-      return <p className={className.subHeader()}>{subHeader}</p>
+      return <p className={classes.subHeader()}>{subHeader}</p>
     }
 
     const renderActions = () => {
       if (!actions) return null
       if (!Array.isArray(actions)) {
         return (
-          <div className={className.actions()}>
+          <div className={classes.actions()}>
             {actions.confirm && <Button {...actions.confirm}>{actions.confirm?.children}</Button>}
             {actions.cancel && (
               <Button variant='text' onClick={onClose} {...actions.cancel}>
@@ -69,7 +69,7 @@ export const Drawer: React.FC<DrawerProps> = memo(
         )
       }
       return (
-        <div className={className.actions()}>
+        <div className={classes.actions()}>
           {actions.map((action) => (
             <Button key={generateUUID()} {...action} />
           ))}
@@ -79,13 +79,13 @@ export const Drawer: React.FC<DrawerProps> = memo(
 
     const renderContent = () => {
       return (
-        <div className={className.root()}>
-          {!disableBackdrop && <div className={className.backdrop()}></div>}
+        <div className={classes.root()}>
+          {!disableBackdrop && <div className={classes.backdrop()}></div>}
           {open ? (
             <div
               ref={data.drawerRef}
               className={makeClass(
-                className.dialog({
+                classes.dialog({
                   position,
                   size,
                 }),
@@ -94,7 +94,7 @@ export const Drawer: React.FC<DrawerProps> = memo(
             >
               {renderHeader()}
               {renderSubHeader()}
-              <div className={makeClass(className.content(), contentClassName)}>{children}</div>
+              <div className={makeClass(classes.content(), contentClassName)}>{children}</div>
               {renderActions()}
             </div>
           ) : null}

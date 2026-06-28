@@ -34,25 +34,25 @@ export const Dialog: React.FC<DialogProps> = memo(
     ...props
   }) => {
     const data = useData({ open, onClose })
-    const className = useClasses()
+    const classes = useClasses()
     const dialogRoot = document.getElementById('modal')
     if (!dialogRoot || !open) return null
 
     const renderHeader = () => {
       if (!header) return null
-      return <h4 className={className.header()}>{header}</h4>
+      return <h4 className={classes.header()}>{header}</h4>
     }
 
     const renderSubHeader = () => {
       if (!subHeader) return null
-      return <p className={className.subHeader()}>{subHeader}</p>
+      return <p className={classes.subHeader()}>{subHeader}</p>
     }
 
     const renderActions = () => {
       if (!actions) return null
       if (!Array.isArray(actions)) {
         return (
-          <div className={className.actions()}>
+          <div className={classes.actions()}>
             {actions.confirm && <Button {...actions.confirm}>{actions.confirm?.children}</Button>}
             {actions.cancel && (
               <Button variant='text' onClick={onClose} {...actions.cancel}>
@@ -63,7 +63,7 @@ export const Dialog: React.FC<DialogProps> = memo(
         )
       }
       return (
-        <div className={className.actions()}>
+        <div className={classes.actions()}>
           {actions.map((action) => (
             <Button key={generateUUID()} {...action} />
           ))}
@@ -73,14 +73,14 @@ export const Dialog: React.FC<DialogProps> = memo(
 
     const renderContent = () => {
       return (
-        <div className={className.root()}>
-          {!disableBackdrop && <div className={className.backdrop()}></div>}
+        <div className={classes.root()}>
+          {!disableBackdrop && <div className={classes.backdrop()}></div>}
           <dialog
             open={open}
             onClose={onClose}
             ref={data.dialogRef}
             className={makeClass(
-              className.dialog({
+              classes.dialog({
                 size,
               }),
               rootClassName
@@ -89,7 +89,7 @@ export const Dialog: React.FC<DialogProps> = memo(
           >
             {renderHeader()}
             {renderSubHeader()}
-            <div className={className.content()}>{children}</div>
+            <div className={classes.content()}>{children}</div>
             {renderActions()}
           </dialog>
         </div>

@@ -57,7 +57,7 @@ export const Select: React.FC<SelectProps> = memo(
   }) => {
     const id = useId()
     const data = useData()
-    const className = useClasses()
+    const classes = useClasses()
 
     const renderLabel = () => {
       if (!label) return null
@@ -78,17 +78,17 @@ export const Select: React.FC<SelectProps> = memo(
 
     const renderHelperText = () => {
       if (!helperText) return null
-      return <p className={className.helperText({ isError })}>{helperText}</p>
+      return <p className={classes.helperText({ isError })}>{helperText}</p>
     }
 
     const renderDropDown = () => {
       return (
         <div
           id={id}
-          className={makeClass(className.dropDown(), props.className)}
+          className={makeClass(classes.dropDown(), props.className)}
           onClick={data.handleToggle}
         >
-          <span className={className.selected()}>
+          <span className={classes.selected()}>
             {value && !data.selectValue
               ? options.find((option) => option.value === value.toString())?.label
               : options.find((option) => option.value === data.selectValue.toString())?.label}
@@ -100,11 +100,11 @@ export const Select: React.FC<SelectProps> = memo(
     const renderMenuList = () => {
       if (!data.isOpen) return null
       return (
-        <div className={makeClass(className.content(), className.menuList())}>
+        <div className={makeClass(classes.content(), classes.menuList())}>
           {options.map((option) => (
             <p
               key={option.value}
-              className={className.menuItem()}
+              className={classes.menuItem()}
               onClick={() => {
                 data.handleSelectValue(option.value)
                 onChange && onChange(option.value)
@@ -118,11 +118,11 @@ export const Select: React.FC<SelectProps> = memo(
     }
 
     return (
-      <div className={makeClass(className.root({ fullWidth }), rootClassName)}>
+      <div className={makeClass(classes.root({ fullWidth }), rootClassName)}>
         {renderLabel()}
         <div
           className={makeClass(
-            className.content({ isError, variant, color, size }),
+            classes.content({ isError, variant, color, size }),
             contentClassName
           )}
         >

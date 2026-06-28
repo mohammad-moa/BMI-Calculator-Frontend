@@ -40,7 +40,7 @@ export const TextField: React.FC<TextFieldProps> = memo(
     ...props
   }) => {
     const id = useId()
-    const className = useClasses()
+    const classes = useClasses()
 
     const renderLabel = () => {
       if (!label) return null
@@ -59,20 +59,20 @@ export const TextField: React.FC<TextFieldProps> = memo(
 
     const renderHelperText = () => {
       if (!helperText) return null
-      return <p className={className.helperText({ isError })}>{helperText}</p>
+      return <p className={classes.helperText({ isError })}>{helperText}</p>
     }
 
     const renderTextField = () => {
       if (rows <= 1) {
         return (
-          <input id={id} className={makeClass(className.textfield(), props.className)} {...props} />
+          <input id={id} className={makeClass(classes.textfield(), props.className)} {...props} />
         )
       }
       return (
         <textarea
           id={id}
           rows={rows}
-          className={makeClass(className.textfield(), props.className)}
+          className={makeClass(classes.textfield(), props.className)}
           {...props}
         />
       )
@@ -83,7 +83,7 @@ export const TextField: React.FC<TextFieldProps> = memo(
         {renderLabel()}
         <div
           className={makeClass(
-            className.root({ fullWidth, isError, variant, color, size }),
+            classes.root({ fullWidth, isError, variant, color, size }),
             rootClassName
           )}
         >

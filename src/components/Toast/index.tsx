@@ -62,7 +62,7 @@ export const Toast: React.FC<ToastProps> = memo(
     ...props
   }) => {
     useData({ open, onClose, autoCloseDuration, onConfirm })
-    const className = useClasses()
+    const classes = useClasses()
     const toastRoot = document.getElementById('toast')
     if (!toastRoot || !open) return null
 
@@ -98,7 +98,7 @@ export const Toast: React.FC<ToastProps> = memo(
       return (
         <div
           className={makeClass(
-            className.toast({
+            classes.toast({
               position,
               color,
               variant,
@@ -107,11 +107,11 @@ export const Toast: React.FC<ToastProps> = memo(
           )}
           {...props}
         >
-          <div className={className.contentContainer()}>
+          <div className={classes.contentContainer()}>
             {renderIcon()}
-            <div className={className.content()}>
-              <h5 className={className.message()}>{message}</h5>
-              {description && <p className={className.description()}>{description}</p>}
+            <div className={classes.content()}>
+              <h5 className={classes.message()}>{message}</h5>
+              {description && <p className={classes.description()}>{description}</p>}
             </div>
             {renderCloseButton()}
           </div>
