@@ -6,3 +6,6 @@ export * from './bmi/index.type'
 
 export * from './meta'
 export * from './meta/index.type'
+
+export * from './paginate'
+export * from './paginate/index.type'
