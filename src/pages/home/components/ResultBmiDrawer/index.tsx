@@ -16,7 +16,7 @@ type ResultBmiDrawerProps = {
 
 export const ResultBmiDrawer: React.FC<ResultBmiDrawerProps> = memo(
   ({ isOpen = false, onClose = () => undefined, item = new Bmi() }) => {
-    const className = useClasses()
+    const classes = useClasses()
     const { TX } = useText()
 
     return (
@@ -24,7 +24,7 @@ export const ResultBmiDrawer: React.FC<ResultBmiDrawerProps> = memo(
         open={isOpen}
         onClose={onClose}
         header={TX('HOME.RESULT')}
-        contentClassName={className.content()}
+        contentClassName={classes.content()}
         actions={{
           cancel: {
             fullWidth: true,
@@ -33,14 +33,14 @@ export const ResultBmiDrawer: React.FC<ResultBmiDrawerProps> = memo(
           },
         }}
       >
-        <h3 className={className.bmi()}>
+        <h3 className={classes.bmi()}>
           <span>{TX('HOME.BMI')}</span> {item.getBmi()}
         </h3>
-        <div className={className.details()}>
-          <Card variant='standard' color='info' rootClassName={className.bodyFat()}>
+        <div className={classes.details()}>
+          <Card variant='standard' color='info' rootClassName={classes.bodyFat()}>
             <span>{TX('HOME.BODY_FAT')}:</span> {item.getBodyFat()}
           </Card>
-          <p className={className.message()}>
+          <p className={classes.message()}>
             {TX('HOME.BMI_STATUS_MESSAGE', item.getStatusDisplay())}
           </p>
         </div>

@@ -17,7 +17,7 @@ import { ResultBmiDrawer } from './components'
 type HomePageProps = {}
 
 export const HomePage: React.FC<HomePageProps> = () => {
-  const className = useClasses()
+  const classes = useClasses()
   const { TX } = useText()
   const data = useData()
 
@@ -25,9 +25,9 @@ export const HomePage: React.FC<HomePageProps> = () => {
     return (
       <div>
         <h4>{TX('HOME.GENDER')} *</h4>
-        <div className={className.cards()}>
+        <div className={classes.cards()}>
           <span
-            className={className.card({
+            className={classes.card({
               selected: data.watch('gender') === GenderEnum.MALE,
             })}
             onClick={() => data.setFormValue('gender', GenderEnum.MALE)}
@@ -35,7 +35,7 @@ export const HomePage: React.FC<HomePageProps> = () => {
             <GenderMale /> {TX('HOME.MALE')}
           </span>
           <span
-            className={className.card({
+            className={classes.card({
               selected: data.watch('gender') === GenderEnum.FEMALE,
             })}
             onClick={() => data.setFormValue('gender', GenderEnum.FEMALE)}
@@ -50,7 +50,7 @@ export const HomePage: React.FC<HomePageProps> = () => {
   const renderUnits = (key: keyof Units, unit: Units[keyof Units], text: string) => {
     return (
       <span
-        className={className.unit({
+        className={classes.unit({
           selected: data.watch(key) === unit,
         })}
         onClick={() => data.setFormValue(key, unit)}
@@ -62,7 +62,7 @@ export const HomePage: React.FC<HomePageProps> = () => {
 
   const renderForm = () => {
     return (
-      <form className={className.form()} onSubmit={data.handleSubmit(data.handleSubmitFinish)}>
+      <form className={classes.form()} onSubmit={data.handleSubmit(data.handleSubmitFinish)}>
         {renderGender()}
         <Controller
           control={data.control}
@@ -81,7 +81,7 @@ export const HomePage: React.FC<HomePageProps> = () => {
             />
           )}
         />
-        <div className={className.fieldContainer()}>
+        <div className={classes.fieldContainer()}>
           <Controller
             control={data.control}
             name='weight'
@@ -94,7 +94,7 @@ export const HomePage: React.FC<HomePageProps> = () => {
                 label={TX('HOME.WEIGHT')}
                 color='primary'
                 endIcon={
-                  <div className={className.units()}>
+                  <div className={classes.units()}>
                     {renderUnits('weightUnit', WeightEnum.KG, TX('HOME.KG'))}
                     {renderUnits('weightUnit', WeightEnum.LB, TX('HOME.LB'))}
                   </div>
@@ -119,7 +119,7 @@ export const HomePage: React.FC<HomePageProps> = () => {
                 label={TX('HOME.HEIGHT')}
                 color='primary'
                 endIcon={
-                  <div className={className.units()}>
+                  <div className={classes.units()}>
                     {renderUnits('heightUnit', HeightEnum.CM, TX('HOME.CM'))}
                     {renderUnits('heightUnit', HeightEnum.FT, TX('HOME.FT'))}
                   </div>
@@ -141,18 +141,18 @@ export const HomePage: React.FC<HomePageProps> = () => {
   }
 
   return (
-    <div className={className.root()}>
-      <div className={className.formContainer()}>
+    <div className={classes.root()}>
+      <div className={classes.formContainer()}>
         <div>
-          <span className={className.badge()}>
+          <span className={classes.badge()}>
             <Flame /> {TX('HOME.STAY_FIT')}
           </span>
-          <h1 className={className.title()}>{TX('HOME.BMI_CALCULATOR')}</h1>
-          <p className={className.text()}>{TX('HOME.BMI_CALCULATOR_MESSAGE')}</p>
+          <h1 className={classes.title()}>{TX('HOME.BMI_CALCULATOR')}</h1>
+          <p className={classes.text()}>{TX('HOME.BMI_CALCULATOR_MESSAGE')}</p>
         </div>
         {renderForm()}
       </div>
-      <div className={className.image()}>
+      <div className={classes.image()}>
         <img src={BmiChart} alt='bmi-chart' />
       </div>
       <ResultBmiDrawer
