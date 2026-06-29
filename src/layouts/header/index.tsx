@@ -1,6 +1,10 @@
 import { NavLink } from 'react-router'
 // constants
 import { HISTORY_ROUTE } from '@constants/routes'
+// icons
+import { History } from '@icons'
+// utils
+import { makeClass } from '@utils'
 // hooks
 import { useText } from '@hooks'
 // locals
@@ -18,8 +22,11 @@ export const Header: React.FC<HeaderProps> = () => {
         IM<strong className={classes.subTitle()}>FIT</strong>
       </h1>
       <div>
-        <NavLink to={HISTORY_ROUTE} className='opacity-50 pointer-events-none'>
-          {TX('HISTORY')} ({TX('COMING_SOON')})
+        <NavLink
+          to={HISTORY_ROUTE}
+          className={({ isActive }) => makeClass(classes.link(), isActive && classes.activeLink())}
+        >
+          <History /> {TX('HISTORY')}
         </NavLink>
       </div>
     </div>
