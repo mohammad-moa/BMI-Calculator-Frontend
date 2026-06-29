@@ -1,7 +1,10 @@
+import { Link } from 'react-router'
 // components
 import { Button, TextField } from '@components'
 // icons
 import { ChevronLeft, Search } from '@icons'
+// constants
+import { MAIN_ROUTE } from '@constants/routes'
 // hooks
 import { useText } from '@hooks'
 // locals
@@ -18,15 +21,11 @@ export const HistoryPage: React.FC<HistoryPageProps> = () => {
   return (
     <div className={classes.root()}>
       <div className={classes.container()}>
-        <Button
-          variant='outlined'
-          color='info'
-          startIcon={<ChevronLeft />}
-          className={classes.back()}
-          onClick={data.handleBack}
-        >
-          {TX('BACK')}
-        </Button>
+        <Link to={MAIN_ROUTE}>
+          <Button color='info' startIcon={<ChevronLeft />} className={classes.back()}>
+            {TX('BACK')}
+          </Button>
+        </Link>
         <div className={classes.titleContainer()}>
           <h4 className={classes.title()}>{TX('HISTORY')}</h4>
           <TextField

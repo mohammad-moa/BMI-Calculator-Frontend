@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate, useSearchParams } from 'react-router'
+import { useSearchParams } from 'react-router'
 // schemas
 import { BmiHistoryListRequest, bmiHistoryListRequestSchema } from '@schemas'
 // utils
@@ -8,16 +8,11 @@ import { changeQueryUrl, parseQueryParams } from '@utils'
 import { useDebouncedCallback } from '@hooks'
 
 export const useData = () => {
-  const navigate = useNavigate()
   const [searchParams, setSearchParams] = useSearchParams()
   const query = parseQueryParams(searchParams, bmiHistoryListRequestSchema)
   const [searchTerm, setSearchTerm] = useState(query.search || '')
 
   /* -------------------------------- Handlers -------------------------------- */
-
-  const handleBack = () => {
-    navigate(-1)
-  }
 
   const handleChangeQueryUrl = useDebouncedCallback((newQuery: Partial<BmiHistoryListRequest>) => {
     changeQueryUrl(searchParams, setSearchParams, bmiHistoryListRequestSchema, newQuery)
@@ -31,5 +26,5 @@ export const useData = () => {
     })
   }
 
-  return { handleBack, searchParams, query, searchTerm, handleChangeQueryUrl, handleSearch }
+  return { searchParams, query, searchTerm, handleChangeQueryUrl, handleSearch }
 }
