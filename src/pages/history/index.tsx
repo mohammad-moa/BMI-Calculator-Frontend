@@ -32,13 +32,8 @@ export const HistoryPage: React.FC<HistoryPageProps> = () => {
           <TextField
             fullWidth
             startIcon={<Search />}
-            value={data.query.search || ''}
-            onChange={(e) =>
-              data.handleChangeQueryUrl({
-                page: 1,
-                search: e.target.value,
-              })
-            }
+            value={data.searchTerm || ''}
+            onChange={(e) => data.handleSearch(e.target.value)}
           />
         </div>
       </div>
