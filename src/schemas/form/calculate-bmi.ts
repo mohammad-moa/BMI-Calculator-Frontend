@@ -8,6 +8,7 @@ export const calculateBmiFormSchema = z.object({
   weightUnit: z.enum(WeightEnum),
   height: z.number('Height is required'),
   heightUnit: z.enum(HeightEnum),
+  notes: z.string().optional(),
 })
 
 export type CalculateBmiFormValues = z.infer<typeof calculateBmiFormSchema>

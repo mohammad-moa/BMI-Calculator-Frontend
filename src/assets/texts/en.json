@@ -5,6 +5,7 @@
   "INFORMATION_WAS_SUCCESSFULLY": "Information saved successfully",
   "RETRY": "Retry",
   "SEARCH": "Search",
+  "Status": "Status",
   "BACK": "Back",
   "FOOTER.COPYRIGHT": "Made with ❤ by Mohammad Ahrari",
   "HOME.STAY_FIT": "Stay Fit",
@@ -20,6 +21,8 @@
   "HOME.LB": "Lb",
   "HOME.CM": "Cm",
   "HOME.FT": "Ft",
+  "HOME.NOTES": "Notes",
+  "HOME.NOTES_MESSAGE": "Record your current diet phase, training status, or time of day for a complete history.",
   "HOME.CALCULATE": "Calculate",
   "HOME.RESULT": "Result",
   "HOME.BMI": "BMI",
@@ -30,5 +33,6 @@
   "HISTORY.AGE": "Age",
   "HISTORY.WEIGHT": "Weight",
   "HISTORY.HEIGHT": "Height",
+  "HISTORY.NOTES": "Notes",
   "HISTORY.REGISTRATION_DATE": "Registration Date"
 }

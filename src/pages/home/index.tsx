@@ -64,24 +64,26 @@ export const HomePage: React.FC<HomePageProps> = () => {
     return (
       <form className={classes.form()} onSubmit={data.handleSubmit(data.handleSubmitFinish)}>
         {renderGender()}
-        <Controller
-          control={data.control}
-          name='age'
-          render={({ field }) => (
-            <TextField
-              {...field}
-              fullWidth
-              isRequired
-              type='number'
-              label={TX('HOME.AGE')}
-              color='primary'
-              isError={!!data.errors.age?.message}
-              helperText={data.errors.age?.message}
-              onChange={(e) => field.onChange(e.target.value === '' ? '' : Number(e.target.value))}
-            />
-          )}
-        />
         <div className={classes.fieldContainer()}>
+          <Controller
+            control={data.control}
+            name='age'
+            render={({ field }) => (
+              <TextField
+                {...field}
+                fullWidth
+                isRequired
+                type='number'
+                label={TX('HOME.AGE')}
+                color='primary'
+                isError={!!data.errors.age?.message}
+                helperText={data.errors.age?.message}
+                onChange={(e) =>
+                  field.onChange(e.target.value === '' ? '' : Number(e.target.value))
+                }
+              />
+            )}
+          />
           <Controller
             control={data.control}
             name='weight'
@@ -133,6 +135,20 @@ export const HomePage: React.FC<HomePageProps> = () => {
             )}
           />
         </div>
+        <Controller
+          control={data.control}
+          name='notes'
+          render={({ field }) => (
+            <TextField
+              {...field}
+              fullWidth
+              rows={2}
+              label={TX('HOME.NOTES')}
+              color='primary'
+              helperText={TX('HOME.NOTES_MESSAGE')}
+            />
+          )}
+        />
         <Button type='submit' size='large'>
           {TX('HOME.CALCULATE')}
         </Button>
