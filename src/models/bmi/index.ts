@@ -35,6 +35,10 @@ export class Bmi {
     return this.props.heightUnit || HeightEnum.CM
   }
 
+  getNotes(): string {
+    return this.props.notes || ''
+  }
+
   getBmi(): number {
     return this.props.bmi || 0
   }

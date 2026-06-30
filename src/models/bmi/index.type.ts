@@ -7,6 +7,7 @@ export interface IBmi {
   weightUnit?: WeightEnum
   height?: number
   heightUnit?: HeightEnum
+  notes?: string
   bmi?: number
   bodyFat?: number
   status?: BmiStatusEnum
