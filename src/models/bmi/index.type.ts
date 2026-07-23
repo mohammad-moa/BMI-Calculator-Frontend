@@ -1,6 +1,7 @@
 import { BmiStatusEnum, GenderEnum, HeightEnum, WeightEnum } from '@enums'
+import { IBase } from '@models/base/index.type'
 
-export interface IBmi {
+export interface IBmi extends IBase {
   gender?: GenderEnum
   age?: number
   weight?: number

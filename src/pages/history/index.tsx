@@ -10,6 +10,8 @@ import { useText } from '@hooks'
 // locals
 import { useClasses } from './useClasses'
 import { useData } from './useData'
+import { HistoryBmiList } from './components'
+import { Bmi } from '@models'
 
 type HistoryPageProps = {}
 
@@ -21,7 +23,7 @@ export const HistoryPage: React.FC<HistoryPageProps> = () => {
   return (
     <div className={classes.root()}>
       <div className={classes.container()}>
-        <Link to={MAIN_ROUTE}>
+        <Link to={MAIN_ROUTE} className={classes.link()}>
           <Button color='info' startIcon={<ChevronLeft />} className={classes.back()}>
             {TX('BACK')}
           </Button>
@@ -34,6 +36,9 @@ export const HistoryPage: React.FC<HistoryPageProps> = () => {
             value={data.searchTerm || ''}
             onChange={(e) => data.handleSearch(e.target.value)}
           />
+        </div>
+        <div className={classes.content()}>
+          <HistoryBmiList items={[new Bmi({ age: 28 })]} />
         </div>
       </div>
     </div>

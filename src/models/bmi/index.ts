@@ -1,11 +1,13 @@
 import { BmiStatusEnum, GenderEnum, HeightEnum, WeightEnum } from '@enums'
 import { IBmi } from './index.type'
 import { capitalizeString } from '@utils/converter'
+import { Base } from '@models/base'
 
-export class Bmi {
+export class Bmi extends Base {
   protected props: IBmi = {}
 
   constructor(data?: IBmi) {
+    super()
     if (data) {
       this.props = data
     }
