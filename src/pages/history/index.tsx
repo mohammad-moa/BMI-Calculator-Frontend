@@ -5,6 +5,8 @@ import { Button, TextField } from '@components'
 import { ChevronLeft, Search } from '@icons'
 // constants
 import { MAIN_ROUTE } from '@constants/routes'
+// utils
+import { generateUUID } from '@utils'
 // hooks
 import { useText } from '@hooks'
 // locals
@@ -38,7 +40,7 @@ export const HistoryPage: React.FC<HistoryPageProps> = () => {
           />
         </div>
         <div className={classes.content()}>
-          <HistoryBmiList items={[new Bmi({ age: 28 })]} />
+          <HistoryBmiList items={[new Bmi({ id: generateUUID(), age: 28 })]} />
         </div>
       </div>
     </div>
