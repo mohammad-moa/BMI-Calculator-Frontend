@@ -40,7 +40,7 @@ export const HistoryPage: React.FC<HistoryPageProps> = () => {
           />
         </div>
         <div className={classes.content()}>
-          <HistoryBmiList items={[new Bmi({ id: generateUUID(), age: 28 })]} />
+          <HistoryBmiList items={[new Bmi({ id: generateUUID(), bmi: 24, age: 28 })]} />
         </div>
       </div>
     </div>
