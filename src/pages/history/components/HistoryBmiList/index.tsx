@@ -15,12 +15,12 @@ export const HistoryBmiList: React.FC<HistoryBmiListProps> = memo(({ items = [] 
   const classes = useClasses()
   const { TX } = useText()
 
-  const renderNotFoundContent = () => {
+  const renderNotFound = () => {
     return <div className={classes.notFound()}>{TX('NOT_DATA_FOUND')}</div>
   }
 
   const renderContent = () => {
-    if (items.length <= 0) return renderNotFoundContent()
+    if (items.length <= 0) return renderNotFound()
     return items.map((item) => (
       <div key={item.getId()}>
         <HistoryBmiItem item={item} />
