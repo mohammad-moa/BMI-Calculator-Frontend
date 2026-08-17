@@ -1,6 +1,8 @@
 import { memo } from 'react'
 // utils
 import { makeClass } from '@utils'
+// hooks
+import { useText } from '@hooks'
 // locals
 import { useClasses } from './useClasses'
 
@@ -24,31 +26,41 @@ export const TableComponent = <T,>({
   rootClassName,
 }: TableProps<T>) => {
   const classes = useClasses()
+  const { TX } = useText()
 
-  const renderHeader = () => (
-    <div className={classes.header()}>
-      {columns.map((column) => (
-        <span key={column.id}>{column.header}</span>
-      ))}
-    </div>
-  )
+  const renderNotFound = () => {
+    return <div className={classes.notFound()}>{TX('NOT_DATA_FOUND')}</div>
+  }
 
-  const renderRows = () => (
-    <div className={classes.rowContainer()}>
-      {rows.map((row, rowIndex) => (
-        <div
-          key={rowIndex}
-          className={classes.row({
-            striped,
-          })}
-        >
-          {columns.map((column) => (
-            <span key={column.id}>{column.render(row)}</span>
-          ))}
-        </div>
-      ))}
-    </div>
-  )
+  const renderHeader = () => {
+    return (
+      <div className={classes.header()}>
+        {columns.map((column) => (
+          <span key={column.id}>{column.header}</span>
+        ))}
+      </div>
+    )
+  }
+
+  const renderRows = () => {
+    if (rows.length <= 0) return renderNotFound()
+    return (
+      <div className={classes.rowContainer()}>
+        {rows.map((row, rowIndex) => (
+          <div
+            key={rowIndex}
+            className={classes.row({
+              striped,
+            })}
+          >
+            {columns.map((column) => (
+              <span key={column.id}>{column.render(row)}</span>
+            ))}
+          </div>
+        ))}
+      </div>
+    )
+  }
 
   return (
     <div className={makeClass(classes.table(), rootClassName)}>

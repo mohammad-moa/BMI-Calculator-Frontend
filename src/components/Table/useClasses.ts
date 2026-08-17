@@ -3,6 +3,7 @@ import { cva } from 'class-variance-authority'
 export const useClasses = () => {
   return {
     table: cva('mb-3'),
+    notFound: cva('text-center pt-10 text-lg font-semibold text-gray-500'),
     header: cva(
       'bg-gray-800 text-white font-bold text-sm flex items-center justify-between px-3 py-2 rounded-lg'
     ),
