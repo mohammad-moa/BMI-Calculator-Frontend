@@ -5,15 +5,12 @@ import { Table, TableColumn } from '@components'
 import { Bmi } from '@models'
 // hooks
 import { useText } from '@hooks'
-// locals
-import { useClasses } from './useClasses'
 
 type HistoryBmiTableProps = {
   items: Bmi[]
 }
 
 export const HistoryBmiTable: React.FC<HistoryBmiTableProps> = memo(({ items = [] }) => {
-  const classes = useClasses()
   const { TX } = useText()
 
   const columns: TableColumn<Bmi>[] = [
