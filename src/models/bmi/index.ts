@@ -63,8 +63,16 @@ export class Bmi extends Base {
     return capitalizeString(this.getGender())
   }
 
+  getWeightDisplay(): string {
+    return `${this.getWeight()} ${this.getWeightUnitDisplay()}`
+  }
+
   getWeightUnitDisplay(): string {
     return capitalizeString(this.getWeightUnit())
+  }
+
+  getHeightDisplay(): string {
+    return `${this.getHeight()} ${this.getHeightUnitDisplay()}`
   }
 
   getHeightUnitDisplay(): string {

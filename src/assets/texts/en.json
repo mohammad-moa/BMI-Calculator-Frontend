@@ -34,6 +34,9 @@
   "HISTORY.AGE": "Age",
   "HISTORY.WEIGHT": "Weight",
   "HISTORY.HEIGHT": "Height",
+  "HISTORY.BMI": "BMI",
+  "HISTORY.BODY_FAT": "Body Fat",
+  "HISTORY.STATUS": "Status",
   "HISTORY.NOTES": "Notes",
   "HISTORY.REGISTRATION_DATE": "Registration Date"
 }

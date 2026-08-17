@@ -10,8 +10,8 @@ import { useText } from '@hooks'
 // locals
 import { useClasses } from './useClasses'
 import { useData } from './useData'
-import { HistoryBmiList } from './components'
-import { Meta } from '@models'
+import { HistoryBmiTable } from './components'
+import { Bmi, Meta } from '@models'
 
 type HistoryPageProps = {}
 
@@ -37,7 +37,28 @@ export const HistoryPage: React.FC<HistoryPageProps> = () => {
         />
       </div>
       <div className={classes.content()}>
-        <HistoryBmiList items={[]} />
+        <HistoryBmiTable
+          items={[
+            {
+              age: 20,
+              weight: 50,
+              height: 150,
+            },
+            {
+              age: 28,
+              weight: 87,
+              height: 187,
+            },
+          ].map(
+            (item, i) =>
+              new Bmi({
+                id: String(i + 1),
+                age: item.age,
+                weight: item.weight,
+                height: item.height,
+              })
+          )}
+        />
         <Pagination
           meta={
             new Meta({

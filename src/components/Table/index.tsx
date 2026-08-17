@@ -16,13 +16,15 @@ type TableProps<T> = {
   rows: T[]
   columns: TableColumn<T>[]
   striped?: boolean
+  isLoading?: boolean
   rootClassName?: string
 }
 
-export const TableComponent = <T,>({
+const TableComponent = <T,>({
   rows,
   columns,
   striped = false,
+  isLoading = false,
   rootClassName,
 }: TableProps<T>) => {
   const classes = useClasses()
@@ -35,9 +37,15 @@ export const TableComponent = <T,>({
   const renderHeader = () => {
     return (
       <div className={classes.header()}>
-        {columns.map((column) => (
-          <span key={column.id}>{column.header}</span>
-        ))}
+        {columns.map((column) =>
+          isLoading ? (
+            <span key={column.id} className={classes.loading()}></span>
+          ) : (
+            <span key={column.id} className={classes.headerText()}>
+              {column.header}
+            </span>
+          )
+        )}
       </div>
     )
   }
@@ -53,9 +61,15 @@ export const TableComponent = <T,>({
               striped,
             })}
           >
-            {columns.map((column) => (
-              <span key={column.id}>{column.render(row)}</span>
-            ))}
+            {columns.map((column) =>
+              isLoading ? (
+                <span key={column.id} className={classes.loading()}></span>
+              ) : (
+                <span key={column.id} className={classes.rowText()}>
+                  {column.render(row)}
+                </span>
+              )
+            )}
           </div>
         ))}
       </div>
