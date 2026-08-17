@@ -58,6 +58,7 @@ export const HistoryPage: React.FC<HistoryPageProps> = () => {
                 height: item.height,
               })
           )}
+          isLoading={false}
         />
         <Pagination
           meta={
