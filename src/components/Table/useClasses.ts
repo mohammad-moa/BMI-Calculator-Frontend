@@ -20,6 +20,6 @@ export const useClasses = () => {
       }
     ),
     rowText: cva('flex-1'),
-    loading: cva('bg-black/15 rounded-lg w-full h-3.5 my-1'),
+    loading: cva('animate-pulse bg-black/15 rounded-lg w-full h-3.5 my-1'),
   }
 }
