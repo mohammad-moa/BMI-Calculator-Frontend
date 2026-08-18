@@ -1,9 +1,9 @@
 import { ServerError } from '@services'
 import { UseMutationOptions, UseQueryOptions } from '@tanstack/react-query'
 
-export type BaseQueryOptions<TQueryFnData, TData = TQueryFnData> = Omit<
+export type BaseQueryOptions<TQueryFnData = unknown, TData = TQueryFnData> = Omit<
   UseQueryOptions<TQueryFnData, ServerError, TData>,
-  'queryFn' | 'queryKey'
+  'queryFn'
 >
 
 export type BaseMutationOptions<TData = unknown, TVariables = unknown> = Omit<
