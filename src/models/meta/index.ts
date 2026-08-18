@@ -22,7 +22,7 @@ export class Meta {
   }
 
   getTotalPages(): number {
-    return this.props?.totalPages || 0
+    return this.props?.totalPages || 1
   }
 
   getCurrentPage(): number {

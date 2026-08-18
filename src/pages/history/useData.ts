@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { useSearchParams } from 'react-router'
+// apis
+import { useGetHistoryBmi } from '@apis'
 // schemas
 import { BmiHistoryListRequest, bmiHistoryListRequestSchema } from '@schemas'
 // utils
@@ -11,6 +13,12 @@ export const useData = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const query = parseQueryParams(searchParams, bmiHistoryListRequestSchema)
   const [searchTerm, setSearchTerm] = useState(query.search || '')
+
+  /* ---------------------------------- Apis ---------------------------------- */
+
+  const historyList = useGetHistoryBmi({
+    queryKey: [JSON.stringify(query)],
+  })
 
   /* -------------------------------- Handlers -------------------------------- */
 
@@ -26,5 +34,13 @@ export const useData = () => {
     })
   }
 
-  return { searchParams, query, searchTerm, handleChangeQueryUrl, handleSearch }
+  return {
+    searchParams,
+    query,
+    searchTerm,
+    historyList,
+    isLoading: historyList.isLoading || historyList.isFetching,
+    handleChangeQueryUrl,
+    handleSearch,
+  }
 }

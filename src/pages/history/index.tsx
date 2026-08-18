@@ -11,7 +11,6 @@ import { useText } from '@hooks'
 import { useClasses } from './useClasses'
 import { useData } from './useData'
 import { HistoryBmiTable } from './components'
-import { Bmi, Meta } from '@models'
 
 type HistoryPageProps = {}
 
@@ -37,36 +36,11 @@ export const HistoryPage: React.FC<HistoryPageProps> = () => {
         />
       </div>
       <div className={classes.content()}>
-        <HistoryBmiTable
-          items={[
-            {
-              age: 20,
-              weight: 50,
-              height: 150,
-            },
-            {
-              age: 28,
-              weight: 87,
-              height: 187,
-            },
-          ].map(
-            (item, i) =>
-              new Bmi({
-                id: String(i + 1),
-                age: item.age,
-                weight: item.weight,
-                height: item.height,
-              })
-          )}
-          isLoading={false}
-        />
+        <HistoryBmiTable items={data.historyList.data.getItems()} isLoading={data.isLoading} />
         <Pagination
-          meta={
-            new Meta({
-              currentPage: 1,
-              totalPages: 10,
-            })
-          }
+          meta={data.historyList.data.getMeta()}
+          onPaginate={(page) => data.handleChangeQueryUrl({ page })}
+          disabled={data.isLoading}
           className='mt-auto'
         />
       </div>

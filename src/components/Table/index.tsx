@@ -30,6 +30,25 @@ const TableComponent = <T,>({
   const classes = useClasses()
   const { TX } = useText()
 
+  const renderLoading = () => {
+    return (
+      <div className={classes.rowContainer()}>
+        {Array.from([1, 2, 3]).map((_, i) => (
+          <div
+            key={`row-${i + 1}`}
+            className={classes.row({
+              striped,
+            })}
+          >
+            {columns.map((column) => (
+              <span key={column.id} className={classes.loading()}></span>
+            ))}
+          </div>
+        ))}
+      </div>
+    )
+  }
+
   const renderNotFound = () => {
     return <div className={classes.notFound()}>{TX('NOT_DATA_FOUND')}</div>
   }
@@ -51,6 +70,7 @@ const TableComponent = <T,>({
   }
 
   const renderRows = () => {
+    if (isLoading) return renderLoading()
     if (rows.length <= 0) return renderNotFound()
     return (
       <div className={classes.rowContainer()}>
