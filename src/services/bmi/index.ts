@@ -3,7 +3,7 @@ import axios from '../client-api'
 // schemas
 import { CalculateBmiFormValues } from '@schemas'
 // models
-import { Bmi, IPaginate } from '@models'
+import { Bmi, IBmi, IPaginate } from '@models'
 
 export const create = async ({ data }: MutationRequest<CalculateBmiFormValues>) => {
   const response = await axios.post<Bmi>('/bmi', data)
@@ -11,6 +11,6 @@ export const create = async ({ data }: MutationRequest<CalculateBmiFormValues>) 
 }
 
 export const getHistoryList = async ({ signal, queryParams }: QueryRequest) => {
-  const response = await axios.get<IPaginate<Bmi>>(`/bmi/history`, { signal, params: queryParams })
-  return response.data ?? null
+  const response = await axios.get<IPaginate<IBmi>>(`/bmi/history`, { signal, params: queryParams })
+  return response.data
 }

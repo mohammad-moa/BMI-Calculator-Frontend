@@ -24,7 +24,7 @@ class ClientApi {
       return request
     })
     this.http.interceptors.response.use(
-      (response) => response.data,
+      (response) => response,
       (error: AxiosError) => {
         let message = error.message
         if (error.response) {

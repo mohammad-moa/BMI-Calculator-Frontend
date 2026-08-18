@@ -39,12 +39,12 @@ export const HistoryBmiTable: React.FC<HistoryBmiTableProps> = memo(
       {
         id: 'bmi',
         header: TX('HISTORY.BMI'),
-        render: (row) => row.getBmi(),
+        render: (row) => row.getBmiDisplay(),
       },
       {
         id: 'body_fat',
         header: TX('HISTORY.BODY_FAT'),
-        render: (row) => row.getBodyFat(),
+        render: (row) => row.getBodyFatDisplay(),
       },
       {
         id: 'status',

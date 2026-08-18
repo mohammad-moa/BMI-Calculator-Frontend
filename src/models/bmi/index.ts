@@ -79,6 +79,14 @@ export class Bmi extends Base {
     return capitalizeString(this.getHeightUnit())
   }
 
+  getBmiDisplay(): string {
+    return this.getBmi().toFixed(2)
+  }
+
+  getBodyFatDisplay(): string {
+    return this.getBodyFat().toFixed(2)
+  }
+
   getStatusDisplay(): string {
     return capitalizeString(this.getStatus())
   }
