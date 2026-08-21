@@ -20,8 +20,13 @@ export const LabelValueDisplay: React.FC<LabelValueDisplayProps> = memo(
 
     return (
       <div className={makeClass(classes.labelValueDisplay(), rootClassName)}>
-        <h6 className={classes.label({ color: labelColor })}>{label}</h6>
-        <span className={classes.value({ color: valueColor })}>{value ?? '-'}</span>
+        <h6 className={classes.label({ color: labelColor })}>
+          {isLoading ? <span className={classes.loading()} /> : label}
+        </h6>
+
+        <span className={classes.value({ color: valueColor })}>
+          {isLoading ? <span className={classes.loading()} /> : (value ?? '-')}
+        </span>
       </div>
     )
   }

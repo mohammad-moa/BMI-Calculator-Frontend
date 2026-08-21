@@ -1,6 +1,6 @@
 import { Link } from 'react-router'
 // components
-import { Button, Card, LabelValueDisplay, Pagination, TextField } from '@components'
+import { Button, Pagination, TextField } from '@components'
 // icons
 import { ChevronLeft, Search } from '@icons'
 // constants
@@ -36,9 +36,6 @@ export const HistoryPage: React.FC<HistoryPageProps> = () => {
         />
       </div>
       <div className={classes.content()}>
-        <Card>
-          <LabelValueDisplay label='Age' value='3' />
-        </Card>
         <HistoryBmiTable items={data.historyList.data.getItems()} isLoading={data.isLoading} />
         <Pagination
           meta={data.historyList.data.getMeta()}

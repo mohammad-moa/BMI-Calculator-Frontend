@@ -27,5 +27,6 @@ export const useClasses = () => {
         },
       },
     }),
+    loading: cva('block animate-pulse rounded-md bg-gray-200 w-20 h-4.5 p-1'),
   }
 }
