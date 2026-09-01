@@ -1,15 +1,15 @@
 import { Link } from 'react-router'
 // components
-import { Button, Pagination, TextField } from '@components'
+import { Button, Pagination, Select, TextField, ToggleButtonGroup } from '@components'
 // icons
-import { ChevronLeft, Filter, Search } from '@icons'
+import { ChevronLeft, Filter, LayoutGrid, LayoutList, Search } from '@icons'
 // constants
 import { MAIN_ROUTE } from '@constants/routes'
 // hooks
 import { useText } from '@hooks'
 // locals
 import { useClasses } from './useClasses'
-import { useData } from './useData'
+import { LayoutType, useData } from './useData'
 import { HistoryBmiTable } from './components'
 
 type HistoryPageProps = {}
@@ -22,10 +22,29 @@ export const HistoryPage: React.FC<HistoryPageProps> = () => {
   const renderFilter = () => {
     return (
       <div className={classes.filterContainer()}>
-        <div className={classes.filterIcon()}>
+        {/* <div className={classes.filterIcon()} onClick={data.handleTogglePopover}>
           <Filter />
-        </div>
-        <div className={classes.popover()}></div>
+        </div> */}
+        {data.isOpenPopover && (
+          <div ref={data.popoverRef} className={classes.popover()}>
+            <h3 className={classes.popoverTitle()}>{TX('FILTER')}</h3>
+            <ToggleButtonGroup
+              fullWidth
+              options={[
+                { value: 'List', startIcon: <LayoutList /> },
+                { value: 'Grid', startIcon: <LayoutGrid /> },
+              ]}
+              value={data.layoutType}
+              onChange={(value) => data.setLayoutType(value as LayoutType)}
+            />
+            <Select
+              fullWidth
+              rootClassName='mt-3.5'
+              label={TX('STATUS')}
+              options={data.statusOptions}
+            />
+          </div>
+        )}
       </div>
     )
   }

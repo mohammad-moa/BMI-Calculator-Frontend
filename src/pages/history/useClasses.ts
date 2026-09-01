@@ -9,9 +9,12 @@ export const useClasses = () => {
     titleContainer: cva('flex items-center justify-between'),
     title: cva('text-5xl font-black'),
     queryContainer: cva('flex items-center justify-center gap-3'),
-    filterContainer: cva('position-relative'),
-    filterIcon: cva('cursor-pointer bg-gray-300 p-3 rounded-lg'),
-    popover: cva(''),
+    filterContainer: cva('relative'),
+    filterIcon: cva('cursor-pointer bg-slate-300 p-3 rounded-lg'),
+    popover: cva(
+      'bg-white shadow-lg shadow-slate-300/50 p-5 w-[300px] rounded-lg mt-1.5 absolute right-0'
+    ),
+    popoverTitle: cva('font-bold text-xl mb-5'),
     content: cva('mt-8 flex flex-col flex-1 justify-between'),
   }
 }
