@@ -2,7 +2,7 @@ import { Link } from 'react-router'
 // components
 import { Button, Pagination, TextField } from '@components'
 // icons
-import { ChevronLeft, Search } from '@icons'
+import { ChevronLeft, Filter, Search } from '@icons'
 // constants
 import { MAIN_ROUTE } from '@constants/routes'
 // hooks
@@ -19,6 +19,17 @@ export const HistoryPage: React.FC<HistoryPageProps> = () => {
   const { TX } = useText()
   const data = useData()
 
+  const renderFilter = () => {
+    return (
+      <div className={classes.filterContainer()}>
+        <div className={classes.filterIcon()}>
+          <Filter />
+        </div>
+        <div className={classes.popover()}></div>
+      </div>
+    )
+  }
+
   return (
     <div className={classes.root()}>
       <Link to={MAIN_ROUTE} className={classes.link()}>
@@ -28,12 +39,15 @@ export const HistoryPage: React.FC<HistoryPageProps> = () => {
       </Link>
       <div className={classes.titleContainer()}>
         <h4 className={classes.title()}>{TX('HISTORY')}</h4>
-        <TextField
-          fullWidth
-          startIcon={<Search />}
-          value={data.searchTerm || ''}
-          onChange={(e) => data.handleSearch(e.target.value)}
-        />
+        <div className={classes.queryContainer()}>
+          <TextField
+            fullWidth
+            startIcon={<Search />}
+            value={data.searchTerm || ''}
+            onChange={(e) => data.handleSearch(e.target.value)}
+          />
+          {renderFilter()}
+        </div>
       </div>
       <div className={classes.content()}>
         <HistoryBmiTable items={data.historyList.data.getItems()} isLoading={data.isLoading} />
