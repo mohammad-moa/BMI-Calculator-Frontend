@@ -4,7 +4,7 @@ import BmiChart from '@assets/images/bmi-chart.png'
 // icons
 import { Flame, GenderFemale, GenderMale } from '@icons'
 // components
-import { Button, TextField } from '@components'
+import { Button, TextField, ToggleButtonGroup } from '@components'
 // enums
 import { GenderEnum, HeightEnum, WeightEnum } from '@enums'
 // hooks
@@ -25,24 +25,14 @@ export const HomePage: React.FC<HomePageProps> = () => {
     return (
       <div>
         <h4>{TX('HOME.GENDER')} *</h4>
-        <div className={classes.cards()}>
-          <span
-            className={classes.card({
-              selected: data.watch('gender') === GenderEnum.MALE,
-            })}
-            onClick={() => data.setFormValue('gender', GenderEnum.MALE)}
-          >
-            <GenderMale /> {TX('HOME.MALE')}
-          </span>
-          <span
-            className={classes.card({
-              selected: data.watch('gender') === GenderEnum.FEMALE,
-            })}
-            onClick={() => data.setFormValue('gender', GenderEnum.FEMALE)}
-          >
-            <GenderFemale /> {TX('HOME.FEMALE')}
-          </span>
-        </div>
+        <ToggleButtonGroup
+          options={[
+            { value: GenderEnum.MALE, label: TX('HOME.MALE'), startIcon: <GenderMale /> },
+            { value: GenderEnum.FEMALE, label: TX('HOME.FEMALE'), startIcon: <GenderFemale /> },
+          ]}
+          value={data.watch('gender')}
+          onChange={(value) => data.setFormValue('gender', value as GenderEnum)}
+        />
       </div>
     )
   }

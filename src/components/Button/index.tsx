@@ -62,7 +62,7 @@ export const Button: React.FC<ButtonProps> = memo(
           {...props}
         >
           {renderStartIcon()}
-          <span>{children}</span>
+          {children && <span>{children}</span>}
           {renderEndIcon()}
         </button>
       </div>
