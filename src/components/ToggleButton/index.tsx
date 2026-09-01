@@ -7,12 +7,12 @@ import { makeClass } from '@utils/styles'
 // locals
 import { useClasses } from './useClasses'
 
-export interface ToggleOption extends ButtonProps {
+export type ToggleOption = ButtonProps & {
   value: string
   label?: React.ReactNode
 }
 
-export interface ToggleButtonGroupProps {
+export type ToggleButtonGroupProps = {
   options: ToggleOption[]
   value: string
   onChange: (value: string) => void
